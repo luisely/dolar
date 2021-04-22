@@ -1,0 +1,23 @@
+{
+  "name": "dolar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luisely/dolar.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luisely/dolar/issues"
+  },
+  "homepage": "https://github.com/luisely/dolar#readme",
+  "dependencies": {
+    "next": "^10.1.3"
+  }
+}
