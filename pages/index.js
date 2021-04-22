@@ -1,6 +1,6 @@
 function Home(){
     return ( 
-        <h1> em construição </h1>
+        <h1> em construção </h1>
     )
 }
 
