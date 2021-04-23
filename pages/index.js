@@ -25,7 +25,7 @@ function Home(props) {
             </Head>
 
             <main>
-                <h2 className={utilStyles.heading2Xl}>Dolar PTAX Hoje - {props.dateHoje}</h2>
+                <h2 className={utilStyles.heading2Xl}>Dolar PTAX - {props.dateHoje}</h2>
                 <div>
                     <h3 className={utilStyles.headingLg}>Compra: R$ {props.value} </h3>
                 </div>
@@ -36,7 +36,7 @@ function Home(props) {
             </main>
 
             <footer>
-                <a href="https://github.com/luisely" target="_blank" rel="noopener noreferrer"> Criado por Fernando Ely</a>
+                <a href="https://github.com/luisely/dolar" target="_blank" rel="noopener noreferrer"> Criado por Fernando Ely</a>
             </footer>
         </div>
     )
