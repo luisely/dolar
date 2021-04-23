@@ -32,12 +32,12 @@ function Home(props) {
                 <meta property="og:site_name" content="Valor Dolar"/>
                 <meta property="og:type" content="website"/>
                 <meta property="og:url" content="https://dolar.vercel.app"/>
-                <meta property="og:image" content="https://dolar.vercel.app/dolar.jpg"/>
+                <meta property="og:image" content="https://dolar.vercel.app/images/dolar.jpg"/>
 
                 <meta name="twitter:card" content="summary_large_image"/>
                 <meta name="twitter:title" content="Valor Dolar"/>
                 <meta name="twitter:description" content="Site rapido e minimalista com valor atual do Dolar PTAX"/>
-                <meta name="twitter:image" content="https://dolar.vercel.app/dolar.jpg"/>
+                <meta name="twitter:image" content="https://dolar.vercel.app/images/dolar.jpg"/>
 
                 <meta name="apple-mobile-web-app-title" content="Valor Dolar"/>
                 <meta name="application-name" content="Valor Dolar"/>
