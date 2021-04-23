@@ -10,7 +10,7 @@ function Home({ value, value2, dateHoje}) {
             </Head>
 
             <main>
-                <h1 className={utilStyles.heading2Xl}>Dolar PTAX Hoje - {dateHoje}</h1>
+                <h2 className={utilStyles.heading2Xl}>Dolar PTAX Hoje - {dateHoje}</h2>
                 <div>
                     <h3 className={utilStyles.headingLg}>Compra: R$ {value} </h3>
                 </div>
