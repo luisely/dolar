@@ -6,8 +6,8 @@ export const siteTitle = 'Valor Dolar'
 
 export async function getServerSideProps(context) {
     var now = new Date()
-    now = dateFormat(now, 'mm-dd-yyyy')
-    const res = await fetch(`https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarDia(dataCotacao=@dataCotacao)?@dataCotacao='${now}'&$top=100&$format=json&$select=cotacaoCompra,cotacaoVenda`)
+    now = dateFormat(now, 'mm-dd-yyyy')    
+    const res = await fetch(`https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarPeriodo(dataInicial=@dataInicial,dataFinalCotacao=@dataFinalCotacao)?@dataInicial='01-01-2021'&@dataFinalCotacao='${now}'&$top=100&$orderby=dataHoraCotacao%20desc&$format=json&$select=cotacaoCompra,cotacaoVenda,dataHoraCotacao`)
     const json = await res.json()
     now = dateFormat(now, 'dd/mm/yyyy')
     return {
