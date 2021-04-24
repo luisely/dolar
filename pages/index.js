@@ -7,6 +7,8 @@ export const siteTitle = 'Valor Dolar'
 
 export async function getServerSideProps(context) {
     const apiAccess = process.env.ACCESS_KEY_API
+    const openKey = process.env.OPEN_KEY
+
     var now = new Date()
     now = dateFormat(now, 'mm-dd-yyyy')    
     const res = await fetch(`https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarPeriodo(dataInicial=@dataInicial,dataFinalCotacao=@dataFinalCotacao)?@dataInicial='01-01-2021'&@dataFinalCotacao='${now}'&$top=100&$orderby=dataHoraCotacao%20desc&$format=json&$select=cotacaoCompra,cotacaoVenda,dataHoraCotacao`)
@@ -14,11 +16,14 @@ export async function getServerSideProps(context) {
     now = dateFormat(now, 'dd/mm/yyyy')
     const resEuro = await fetch(`http://data.fixer.io/api/latest?access_key=${apiAccess}&symbols=USD,BRL&format=1`)
     const jsonEuro = await resEuro.json()
+    const resDolar = await fetch(`https://openexchangerates.org/api/latest.json?app_id=${openKey}`)
+    const jsonDolar = await resDolar.json()
     return {
         props: {
             value: json['value'][0].cotacaoCompra,
             value2: json['value'][0].cotacaoVenda,
             euro: jsonEuro.rates.BRL,
+            dolar: jsonDolar.rates.BRL,
             dateHoje: now
         }
     }
@@ -51,12 +56,17 @@ function Home(props) {
             </Head>
 
             <main>
-                <h2 className={utilStyles.heading2Xl}>Dolar PTAX - {props.dateHoje}</h2>
                 <div>
-                    <h3 className={utilStyles.headingLg}>Compra: R$ {props.value} </h3>
+                    <h3 className={utilStyles.heading2Xl}>{props.dateHoje} </h3>
                 </div>
                 <div>
-                    <h3 className={utilStyles.headingLg}>Venda: R$ {props.value2}</h3>
+                    <h3 className={utilStyles.headingLg}>Dolar: R$ {props.dolar} </h3>
+                </div>
+                <div>
+                    <h3 className={utilStyles.headingLg}>Dolar PTAX Compra: R$ {props.value} </h3>
+                </div>
+                <div>
+                    <h3 className={utilStyles.headingLg}>Dolar PTAX Venda: R$ {props.value2}</h3>
                 </div>
                 <div>
                     <h3 className={utilStyles.headingLg}>Euro: R$ {props.euro}</h3>
