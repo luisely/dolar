@@ -4,16 +4,21 @@ import dateFormat from 'dateformat'
 
 export const siteTitle = 'Valor Dolar'
 
+
 export async function getServerSideProps(context) {
+    const apiAccess = process.env.ACCESS_KEY_API
     var now = new Date()
     now = dateFormat(now, 'mm-dd-yyyy')    
     const res = await fetch(`https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarPeriodo(dataInicial=@dataInicial,dataFinalCotacao=@dataFinalCotacao)?@dataInicial='01-01-2021'&@dataFinalCotacao='${now}'&$top=100&$orderby=dataHoraCotacao%20desc&$format=json&$select=cotacaoCompra,cotacaoVenda,dataHoraCotacao`)
     const json = await res.json()
     now = dateFormat(now, 'dd/mm/yyyy')
+    const resEuro = await fetch(`http://data.fixer.io/api/latest?access_key=${apiAccess}&symbols=USD,BRL&format=1`)
+    const jsonEuro = await resEuro.json()
     return {
         props: {
             value: json['value'][0].cotacaoCompra,
             value2: json['value'][0].cotacaoVenda,
+            euro: jsonEuro.rates.BRL,
             dateHoje: now
         }
     }
@@ -52,6 +57,9 @@ function Home(props) {
                 </div>
                 <div>
                     <h3 className={utilStyles.headingLg}>Venda: R$ {props.value2}</h3>
+                </div>
+                <div>
+                    <h3 className={utilStyles.headingLg}>Euro: R$ {props.euro}</h3>
                 </div>
 
             </main>
