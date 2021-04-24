@@ -3,12 +3,14 @@ import utilStyles from '../styles/utils.module.css'
 import dateFormat from 'dateformat'
 
 export const siteTitle = 'Valor Dolar'
-export var now = new Date()
-now = dateFormat(now, 'mm-dd-yyyy')
+
 const apiAccess = process.env.ACCESS_KEY_API
 const openKey = process.env.OPEN_KEY  
 
 export async function getStaticProps(context) {
+    var now = new Date()
+    now = dateFormat(now, 'mm-dd-yyyy')
+
     try {
         const [dolarCompraRes, euroRes, dolarRes] = await Promise.all([
             fetch(`https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarPeriodo(dataInicial=@dataInicial,dataFinalCotacao=@dataFinalCotacao)?@dataInicial='01-01-2021'&@dataFinalCotacao='${now}'&$top=100&$orderby=dataHoraCotacao%20desc&$format=json&$select=cotacaoCompra,cotacaoVenda,dataHoraCotacao`),
@@ -24,7 +26,8 @@ export async function getStaticProps(context) {
             props: {
                 dolarCompra,
                 euro,
-                dolar
+                dolar,
+                now
             },
             revalidate: 20 
             }
@@ -73,7 +76,7 @@ function Home(props) {
 
             <main>
                 <div>
-                    <h3 className={utilStyles.heading2Xl}>{dateFormat(now, 'dd/mm/yyyy')} </h3>
+                    <h3 className={utilStyles.heading2Xl}>{dateFormat(props.now, 'dd/mm/yyyy')} </h3>
                 </div>
                 <div>
                     <h3 className={utilStyles.headingLg}>Dolar: R$ {props.dolar.rates.BRL} </h3>
