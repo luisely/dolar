@@ -8,7 +8,7 @@ now = dateFormat(now, 'mm-dd-yyyy')
 const apiAccess = process.env.ACCESS_KEY_API
 const openKey = process.env.OPEN_KEY  
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
     try {
         const [dolarCompraRes, euroRes, dolarRes] = await Promise.all([
             fetch(`https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarPeriodo(dataInicial=@dataInicial,dataFinalCotacao=@dataFinalCotacao)?@dataInicial='01-01-2021'&@dataFinalCotacao='${now}'&$top=100&$orderby=dataHoraCotacao%20desc&$format=json&$select=cotacaoCompra,cotacaoVenda,dataHoraCotacao`),
@@ -25,8 +25,9 @@ export async function getServerSideProps(context) {
                 dolarCompra,
                 euro,
                 dolar
-                } 
-            };
+            },
+            revalidate: 20 
+            }
     } catch {
         return {
             props: {}
