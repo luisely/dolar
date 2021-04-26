@@ -24,7 +24,8 @@ export const getStaticProps: GetStaticProps  = async (context) => {
             props: {
                 dolarCompra,
                 dolarAtual
-            }
+            },
+            revalidate: 60
         }
     } catch {
         return {
