@@ -7,6 +7,8 @@ body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   line-height: 1.6;
   font-size: 18px;
+  background-color: #262626;
+  color: #a9b4c2
 }
 
 .container {
@@ -50,12 +52,13 @@ footer a {
 }
 
 a {
-  color: #0070f3;
+  color: #eef1ef;
   text-decoration: none;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
 a:hover {
-  color: #123123;
+  color: #a9b4c2;
   text-decoration: none;
 }
 
@@ -63,3 +66,4 @@ img {
   max-width: 100%;
   display: block;
 }
+
