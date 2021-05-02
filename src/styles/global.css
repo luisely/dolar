@@ -1,4 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+:root {
+  --main-text-color:#a9b4c2;
+  --main-bg-color: #181818;
+  --card-bg-color: #ffffff;
+}
 
 html,
 body {
@@ -7,8 +11,8 @@ body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   line-height: 1.6;
   font-size: 18px;
-  background-color: #262626;
-  color: #a9b4c2
+  background-color: var(--main-bg-color);
+  color: var(--main-text-color);
 }
 
 .container {
